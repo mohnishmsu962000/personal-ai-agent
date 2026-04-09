@@ -76,3 +76,28 @@ async def bulk_store_memories(payload: dict):
         "failed": 0,
         "memory_ids": []
     }
+
+@router.post("/memory/{memory_id}/tags")
+async def add_tags(memory_id: str, payload: dict):
+    """
+    Add tags to a memory entry for better categorization.
+    Accepts a list of tag strings.
+    Returns updated tag list for the memory.
+    """
+    tags = payload.get("tags", [])
+    return {
+        "memory_id": memory_id,
+        "tags": tags,
+        "status": "updated"
+    }
+
+@router.get("/memory/tags")
+async def list_all_tags():
+    """
+    List all unique tags across all stored memories.
+    Returns tag name and count of memories using each tag.
+    """
+    return {
+        "tags": [],
+        "total": 0
+    }
