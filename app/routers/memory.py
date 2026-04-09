@@ -37,3 +37,15 @@ async def search_memories(query: str):
     Returns ranked list of relevant memories.
     """
     return {"query": query, "results": [], "total": 0}
+
+@router.get("/memory/stats")
+async def get_memory_stats():
+    """
+    Get statistics about stored memories.
+    Returns total count, categories breakdown, and storage usage.
+    """
+    return {
+        "total_memories": 0,
+        "categories": {},
+        "storage_bytes": 0
+    }
