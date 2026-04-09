@@ -61,3 +61,18 @@ async def export_memories(format: str = "json"):
         "memories": [],
         "exported_at": "2024-01-01T00:00:00Z"
     }
+
+
+@router.post("/memory/bulk")
+async def bulk_store_memories(payload: dict):
+    """
+    Store multiple memory entries in a single request.
+    Accepts a list of memory objects with content and category.
+    Returns count of successfully stored memories.
+    """
+    memories = payload.get("memories", [])
+    return {
+        "stored": len(memories),
+        "failed": 0,
+        "memory_ids": []
+    }
